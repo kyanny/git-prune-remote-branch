@@ -7,12 +7,12 @@ opts.parse!
 
 `git branch -r`.each_line do |branch|
   branch.strip!.chomp!
-  next if branch =~ /origin\/master/
-  next if branch =~ /origin\/develop/
+  next if branch =~ /[^\/]+\/master/
+  next if branch =~ /[^\/]+\/develop/
 
   if `git branch --contains #{branch}`.each_line.any? { |included| included.strip.chomp =~ /\A(develop|master)\z/ }
-    ref = branch.sub(/^origin\//, '')
-    command = "git push --delete origin #{ref}"
+    ref = branch.sub(/^(?<remote>[^\/]+)\//, '')
+    command = "git push --delete #{$~[:remote]} #{ref}"
     puts command
     unless $noop
       system command
