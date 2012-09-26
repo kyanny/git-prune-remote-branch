@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+opts = OptionParser.new
+opts.on('--noop', 'dry-run mode') { |v| $noop = true }
+opts.parse!
+
+`git branch -r`.each_line do |branch|
+  branch.strip!.chomp!
+  next if branch =~ /origin\/master/
+  next if branch =~ /origin\/develop/
+
+  if `git branch --contains #{branch}`.each_line.any? { |included| included.strip.chomp =~ /\A(develop|master)\z/ }
+    ref = branch.sub(/^origin\//, '')
+    command = "git push --delete origin #{ref}"
+    puts command
+    unless $noop
+      system command
+    end
+  end
+end
