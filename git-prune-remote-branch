@@ -10,7 +10,7 @@ opts.parse!
   next if branch =~ %r![^/]+/master!
   next if branch =~ %r![^/]+/develop!
 
-  if `git branch --contains #{branch}`.each_line.any? { |included| included.strip.chomp =~ /\A(develop|master)\z/ }
+  if `git branch --contains #{branch}`.each_line.any? { |included| p included; included.strip.chomp =~ /\A[* ]*(develop|master)\z/ }
     ref = branch.sub(%r!^([^/]+)/!, '')
     command = "git push --delete #{$1} #{ref}"
     puts command
