@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "git-prune-remote-branch"
-  spec.version       = '0.0.1'
+  spec.version       = '1.0.0'
   spec.authors       = ["Kensuke Nagae", "KITAITI Makoto"]
   spec.email         = ["kyanny@gmail.com"]
   spec.description   = %q{git-prune-remote-branch}
