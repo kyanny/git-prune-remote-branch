@@ -3,8 +3,8 @@ Gem::Specification.new do |spec|
   spec.version       = '1.0.0'
   spec.authors       = ["Kensuke Nagae", "KITAITI Makoto"]
   spec.email         = ["kyanny@gmail.com"]
-  spec.description   = %q{git-prune-remote-branch}
-  spec.summary       = %q{git-prune-remote-branch}
+  spec.description   = %q{Delete all remote branches which merged into master or develop.}
+  spec.summary       = %q{Delete all remote branches which merged into master or develop.}
   spec.homepage      = "https://github.com/kyanny/git-prune-remote-branch"
   spec.license       = "MIT"
 
